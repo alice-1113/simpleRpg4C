@@ -44,10 +44,6 @@ int main(void) {
                     break;
 
                 case 1:
-                    // event flag
-                    //  0-30: earn money
-                    // 31-80: encounter enemy
-                    // 81-99: nothing
                     event_flag = rand() % 100;
                     if (event_flag < 31) {
                         earned_money = rand() % 20 + 1;
@@ -57,11 +53,9 @@ int main(void) {
                         enemy_index = rand() % ENEMY_COUNT;
                         enemy = enemies[enemy_index];
                         battle_result = battle(player, enemy);
-                        if (battle_result == -1) {
-                            printf("Escaped!\n");
-                        } else if (battle_result == 0) {
-                            if (player.money > 50) { lose_money(&player); }
-                        } else {
+                        if (battle_result == -1) { printf("Escaped!\n"); }
+                        else if (battle_result == 0) { if (player.money > 50) { lose_money(&player); } }
+                        else {
                             remain_level = can_level_up(player.status, enemy.status.exp);
                             copy_status(&player.status, copy);
                             earn_exp(&player.status, enemy.status.exp);
@@ -70,9 +64,7 @@ int main(void) {
                             }
                             earn_money(&player, enemy.money);
                         }
-                    } else {
-                        printf("There was nothing!\n");
-                    }
+                    } else { printf("There was nothing!\n"); }
 
                     break;
 
