@@ -49,9 +49,9 @@ int calc_damage(const Actor target, const Actor source) {
 
 void receve_damage(Actor* source, const int damage, int message_type) {
     if (message_type == 0) {
-        printf("%sは%dのダメージを受けた\n", source->name, damage);
+        printf("%s took %d damage!\n", source->name, damage);
     } else {
-        printf("%sに%dのダメージを与えた!\n", source->name, damage);
+        printf("Inflicted %d damage on %s!\n", damage, source->name);
     }
     source->status.hitpoint -= damage;
 }
