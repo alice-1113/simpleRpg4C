@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "menu.c"
 #include "actor.c"
 #include "player.c"
@@ -8,6 +9,7 @@
 
 
 int main(void) {
+    srand((unsigned int)time(NULL));
     int mainloop=1, gameloop, loop;
     int restart=1;
     int enemy_index;
