@@ -12,6 +12,9 @@ int main(void) {
     srand((unsigned int)time(NULL));
     int mainloop=1, gameloop, loop;
     int restart=1;
+    Actor enemies[ENEMY_COUNT];
+    int max_enemy_idx = init_enemies(enemies);
+    printf("%d\n", max_enemy_idx);
     int enemy_index;
     Actor player, enemy;
     char name[20];
@@ -52,8 +55,10 @@ int main(void) {
                         earn_money(&player, earned_money);
                     } else if (event_flag < 81) {
                         copy_status(&copy, player.status);
-                        enemy_index = rand() % ENEMY_COUNT;
+                        enemy_index = rand() % max_enemy_idx;
+                        printf("OK\n");
                         enemy = enemies[enemy_index];
+                        printf("OK\n");
                         battle_result = battle(player, enemy);
                         if (battle_result == -1) { printf("Escaped!\n"); }
                         else if (battle_result == 0) { if (player.money > 50) { lose_money(&player); } }

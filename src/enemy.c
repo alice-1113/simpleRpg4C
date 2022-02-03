@@ -2,13 +2,33 @@
 #define _ENEMY_C_
 
 #include "actor.c"
-#define ENEMY_COUNT 3
+#define ENEMY_COUNT 100
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
-const Actor enemies[ENEMY_COUNT] = {
-    { "Goblin", { 1, 32,  8, 10,  2 },  4 },
-    { "Slime" , { 2, 34, 10, 11,  4 },  7 },
-    { "Dragon", { 3, 38, 14, 12,  6 }, 10 }
-};
+int init_enemies(Actor enemies[ENEMY_COUNT]) {
+    FILE* fp;
+    Actor tmp;
+    char* fname = "./enemy.tsv";
+    char buff[150];
+    int idx=0;
+    char name[30], lv[3], hp[4], str[4], def[4], exp[4], money[4];
+    fp = fopen(fname, "r");
+    if (fp==NULL) { exit(1); }
+    while (fgets(buff, 150, fp) != NULL) {
+        sscanf(buff, "%s %s %s %s %s %s %s", name, lv, hp, str, def, exp, money);
+        strcpy(tmp.name, name);
+        Status stmp = {atoi(lv), atoi(hp), atoi(str), atoi(def), atoi(exp)};
+        tmp.status = stmp;
+        tmp.money = atoi(money);
+        enemies[idx] = tmp;
+        idx++;
+    }
+    fclose(fp);
+    return idx;
+}
+
 
 #endif // _ENEMY_C_
