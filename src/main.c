@@ -14,7 +14,6 @@ int main(void) {
     int restart=1;
     Actor enemies[ENEMY_COUNT];
     int max_enemy_idx = init_enemies(enemies);
-    printf("%d\n", max_enemy_idx);
     int enemy_index;
     Actor player, enemy;
     char name[20];
