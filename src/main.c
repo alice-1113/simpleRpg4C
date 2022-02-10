@@ -10,7 +10,7 @@
 
 int main(void) {
     srand((unsigned int)time(NULL));
-    short mainloop=1, gameloop, loop;
+    int mainloop=1, gameloop, loop;
     int restart=1;
     Actor enemies[ENEMY_COUNT];
     int max_enemy_idx = init_enemies(enemies);
