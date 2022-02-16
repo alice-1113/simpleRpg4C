@@ -12,7 +12,7 @@ int main(void) {
     srand((unsigned int)time(NULL));
     int mainloop=1, gameloop, loop;
     int restart=1;
-    Actor enemies[ENEMY_COUNT];
+    Actor enemies[100];
     int max_enemy_idx = init_enemies(enemies);
     int enemy_index;
     Actor player, enemy;
@@ -25,6 +25,7 @@ int main(void) {
     init_status(&status);
 
     while (mainloop) {
+
         gameloop = start_menu();
         if (gameloop != 1) { break; }
 
